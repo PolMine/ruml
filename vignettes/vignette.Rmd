@@ -1,0 +1,30 @@
+---
+title: "Introducing 'ruml'"
+author: "Andreas Blätte (andreas.blaette@uni-due.de)"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introducing 'ruml'}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+## Getting started
+
+```{r}
+library(ruml)
+library(plantuml)
+```
+
+```{r}
+library(polmineR)
+```
+
+
+## Minimal example
+
+```{r}
+plantuml_code <- make_plantuml_code("count", pkg = polmineR)
+plantuml_obj <- plantuml(plantuml_code)
+plot(plantuml_obj, vector = TRUE)
+```

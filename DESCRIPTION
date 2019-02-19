@@ -1,0 +1,21 @@
+Package: ruml
+Type: Package
+Title: Tools to prepare class diagram with plantuml
+Version: 0.0.0.9001
+Date: 2019-02-11
+Authors@R: person("Andreas", "Blaette", role = c("aut", "cre"), email = "andreas.blaette@uni-due.de")
+Description: The package includes a simple set of auxiliary functions to prepare the input
+  data to generate a class diagram using the plantuml package.
+Imports:
+    methods
+Suggests:
+    polmineR,
+    knitr,
+    plantuml
+VignetteBuilder: knitr
+LazyData: yes
+License: GPL-3
+Encoding: UTF-8
+Collate:
+    'ruml.R'
+RoxygenNote: 6.1.1
