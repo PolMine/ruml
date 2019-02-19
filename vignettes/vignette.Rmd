@@ -11,20 +11,43 @@ vignette: >
 
 ## Getting started
 
-```{r}
+```{r load_packages}
 library(ruml)
-library(plantuml)
-```
+library(plantuml) # install from: https://github.com/rkrug/plantuml
+library(magrittr)
 
-```{r}
+
+```{r package_to_analyse}
 library(polmineR)
 ```
 
 
-## Minimal example
+## Examples
 
-```{r}
+### Plain plantuml-output
+
+```{r plain_output}
 plantuml_code <- make_plantuml_code("count", pkg = polmineR)
 plantuml_obj <- plantuml(plantuml_code)
 plot(plantuml_obj, vector = TRUE)
 ```
+
+
+### SVG output
+
+```{r svg_output}
+plantuml_svg_file <- tempfile(fileext = ".svg")
+svg(filename = plantuml_svg_file)
+plot(plantuml_obj, vector = TRUE)
+dev.off()
+# browseURL(url = plantuml_svg_file)
+```
+
+
+### Zoomable output 
+
+```{r zoomable_svg, fig.width = 12}
+svglite::xmlSVG(plot(plantuml_obj, vector = TRUE)) %>%
+  svgPanZoom::svgPanZoom(width = "100%", height = "100%")
+```
+

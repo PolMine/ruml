@@ -11,7 +11,10 @@ Imports:
 Suggests:
     polmineR,
     knitr,
-    plantuml
+    plantuml,
+    svglite,
+    svgPanZoom,
+    magrittr
 VignetteBuilder: knitr
 LazyData: yes
 License: GPL-3
