@@ -63,6 +63,8 @@ make_plantuml_class_description <- function(x, generics){
   if (length(x) == 1L){
     cl_instance <- new(x)
     slot_names <- slotNames(cl_instance)
+    inherited_slots <- unique(unlist(lapply(names(getClass(x)@contains), slotNames)))
+    if (length(inherited_slots) > 0) slot_names <- slot_names[!slot_names %in% inherited_slots]
     slot_class <- sapply(slot_names, function(sn) class(slot(cl_instance, name = sn)))
     generic_is_defined <- sapply(
       generics,
@@ -73,7 +75,10 @@ make_plantuml_class_description <- function(x, generics){
       "class %s {\n%s\n%s\n}",
       x,
       paste("  ", paste(slot_names, unname(slot_class), sep = ": "), collapse = "\n"),
-      paste(paste("  ", defined_generics, "()"), collapse = "\n", sep = "")
+      paste(
+        paste("{method}  ", defined_generics, unname(ifelse(sapply(defined_generics, function(x) x %in% c("!=", "%in%", "[", "[[", "$")), "", "()")), sep = ""),
+        collapse = "\n", sep = ""
+      )
     )
   } else {
     y <- paste(
