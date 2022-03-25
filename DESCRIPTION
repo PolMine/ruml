@@ -15,8 +15,8 @@ Suggests:
     svglite,
     svgPanZoom,
     magrittr
+SystemRequirements: graphviz
 VignetteBuilder: knitr
-LazyData: yes
 License: GPL-3
 Encoding: UTF-8
 Collate:

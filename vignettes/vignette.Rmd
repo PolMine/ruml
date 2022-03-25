@@ -15,7 +15,7 @@ vignette: >
 library(ruml)
 library(plantuml) # install from: https://github.com/rkrug/plantuml
 library(magrittr)
-
+```
 
 ```{r package_to_analyse}
 library(polmineR)
