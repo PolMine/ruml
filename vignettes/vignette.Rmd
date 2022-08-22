@@ -58,7 +58,7 @@ svglite::xmlSVG(plot(plantuml_obj, vector = TRUE)) %>%
 
 ## Scenario 2: Create UML for XML (Schema)
 
-### XML document as src
+### Generate PlantUML code from XML document
 
 ```{r plantuml_from_xml, results = FALSE}
 xml_file <- system.file(package = "ruml", "extdata", "xml", "shiporder.xml")
@@ -68,10 +68,18 @@ make_plantuml_code(xml_file) %>%
 ```
 
 
-### XML Schema Definition (XSD) as src
+### Generate PlantUML code from XML Schema Definition (XSD)
 
 ```{r plantuml_from_xsd, results = FALSE}
 xsd_file <- system.file(package = "ruml", "extdata", "xml", "shiporder.xsd")
+make_plantuml_code(xsd_file) %>%
+  plantuml() %>%
+  plot(vector = TRUE)
+```
+
+
+```{r plantuml_from_xsd2, results = FALSE}
+xsd_file <- system.file(package = "ruml", "extdata", "xml", "plenaryprotocol.xsd")
 make_plantuml_code(xsd_file) %>%
   plantuml() %>%
   plot(vector = TRUE)
