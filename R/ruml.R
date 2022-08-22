@@ -102,22 +102,44 @@ pkg_get_all_methods <- function(pkg) getGenerics(where = environment(pkg))@.Data
 
 #' Generate plantuml data.
 #' 
-#' @param x The name of a class stated as a (length-one) \code{character} vector.
+#' Generate plantuml code for the a class in a package, or for a XML schema.
+#' 
+#' See the [https://xsdata.readthedocs.io](xsdata) documentation site.
+#' 
+#' @param x The name of a class stated as a (length-one) `character` vector,
+#'   or the path of a xsd file.
 #' @param pkg An (unquoted) package name.
 #' @param generics The generic methods to consider.
 #' @rdname ruml
 #' @examples
 #' library(polmineR)
 #' plantuml_code <- make_plantuml_code("corpus", pkg = polmineR)
+#' 
+#' make_plantuml_code(
+#'   system.file(package = "ruml", "extdata", "xml", "shiporder.xml")
+#' )
+#' 
+#' make_plantuml_code(
+#'   system.file(package = "ruml", "extdata", "xml", "shiporder.xsd")
+#' )
 #' @export make_plantuml_code
+#' @importFrom fs is_file
 make_plantuml_code <- function(x, pkg, generics = pkg_get_all_methods(pkg)){
-  sprintf(
-    "%s\n\n%s",
-    paste(make_plantuml_relations(x), collapse = "\n"),
-    make_plantuml_class_description(
-      class_get_subclasses_vec(x),
-      generics
+  if (fs::is_file(x)){
+    xsdata_bin <- get_xsdata_bin()
+    cmd <- sprintf("%s %s --output plantuml --print", xsdata_bin, x)
+    retval <- system(cmd, intern = TRUE)
+  } else {
+    retval <- sprintf(
+      "%s\n\n%s",
+      paste(make_plantuml_relations(x), collapse = "\n"),
+      make_plantuml_class_description(
+        class_get_subclasses_vec(x),
+        generics
+      )
     )
-  )
+  }
+  retval
 }
+
 

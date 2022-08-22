@@ -7,6 +7,8 @@ vignette: >
   %\VignetteIndexEntry{Introducing 'ruml'}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Getting started
@@ -22,11 +24,11 @@ library(polmineR)
 ```
 
 
-## Examples
+## Scenario 1: Create PlantUML Diagram for S4 classes in a package
 
 ### Plain plantuml-output
 
-```{r plain_output}
+```{r plain_output, results = FALSE}
 plantuml_code <- make_plantuml_code("count", pkg = polmineR)
 plantuml_obj <- plantuml(plantuml_code)
 plot(plantuml_obj, vector = TRUE)
@@ -35,12 +37,14 @@ plot(plantuml_obj, vector = TRUE)
 
 ### SVG output
 
-```{r svg_output}
+[not evaluated]
+
+```{r svg_output, eval = FALSE}
 plantuml_svg_file <- tempfile(fileext = ".svg")
 svg(filename = plantuml_svg_file)
 plot(plantuml_obj, vector = TRUE)
 dev.off()
-# browseURL(url = plantuml_svg_file)
+browseURL(url = plantuml_svg_file)
 ```
 
 
@@ -51,3 +55,24 @@ svglite::xmlSVG(plot(plantuml_obj, vector = TRUE)) %>%
   svgPanZoom::svgPanZoom(width = "100%", height = "100%")
 ```
 
+
+## Scenario 2: Create UML for XML (Schema)
+
+### XML document as src
+
+```{r plantuml_from_xml, results = FALSE}
+xml_file <- system.file(package = "ruml", "extdata", "xml", "shiporder.xml")
+make_plantuml_code(xml_file) %>%
+  plantuml() %>%
+  plot(vector = TRUE)
+```
+
+
+### XML Schema Definition (XSD) as src
+
+```{r plantuml_from_xsd, results = FALSE}
+xsd_file <- system.file(package = "ruml", "extdata", "xml", "shiporder.xsd")
+make_plantuml_code(xsd_file) %>%
+  plantuml() %>%
+  plot(vector = TRUE)
+```

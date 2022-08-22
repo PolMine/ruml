@@ -13,20 +13,23 @@ make_plantuml_class_description(x, generics)
 make_plantuml_code(x, pkg, generics = pkg_get_all_methods(pkg))
 }
 \arguments{
-\item{x}{The name of a class stated as a (length-one) \code{character} vector.}
+\item{x}{The name of a class stated as a (length-one) \code{character} vector,
+or the path of a xsd file.}
 
 \item{generics}{The generic methods to consider.}
 
 \item{pkg}{An (unquoted) package name.}
 }
 \description{
-Generate plantuml data.
+Generate plantuml code for the a class in a package, or for a XML schema.
 }
 \details{
 \code{make_plantuml_relations} will generate a \code{character}
-  vector with all relations between super- and subclasses.
+vector with all relations between super- and subclasses.
 
 \code{make_plantuml_class_description} will
+
+See the \href{xsdata}{https://xsdata.readthedocs.io} documentation site.
 }
 \examples{
 make_plantuml_relations("count")

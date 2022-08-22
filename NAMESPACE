@@ -2,10 +2,12 @@
 
 export(class_get_subclasses)
 export(class_get_subclasses_vec)
+export(get_xsdata_bin)
 export(make_plantuml_class_description)
 export(make_plantuml_code)
 export(make_plantuml_relations)
 export(pkg_get_all_methods)
+importFrom(fs,is_file)
 importFrom(methods,findMethods)
 importFrom(methods,getClass)
 importFrom(methods,getGenerics)

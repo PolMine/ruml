@@ -22,10 +22,10 @@ Auxiliary functions.
 }
 \details{
 \code{class_get_subclasses} will retur a two-column
-  \code{data.frame} (columns "super" and "sub") with the relations between
-  super- and subclasses.
+\code{data.frame} (columns "super" and "sub") with the relations between
+super- and subclasses.
 
-\code{class_get_subclasses_vec} will return a \code{character} vector with 
+\code{class_get_subclasses_vec} will return a \code{character} vector with
 all subclasses that inherit from \code{x}.
 }
 \examples{
