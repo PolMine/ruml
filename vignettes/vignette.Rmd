@@ -63,6 +63,7 @@ svglite::xmlSVG(plot(plantuml_obj, vector = TRUE)) %>%
 ```{r plantuml_from_xml, results = FALSE}
 xml_file <- system.file(package = "ruml", "extdata", "xml", "shiporder.xml")
 make_plantuml_code(xml_file) %>%
+  paste(collapse = "\n") %>%
   plantuml() %>%
   plot(vector = TRUE)
 ```
@@ -73,6 +74,7 @@ make_plantuml_code(xml_file) %>%
 ```{r plantuml_from_xsd, results = FALSE}
 xsd_file <- system.file(package = "ruml", "extdata", "xml", "shiporder.xsd")
 make_plantuml_code(xsd_file) %>%
+  paste(collapse = "\n") %>%
   plantuml() %>%
   plot(vector = TRUE)
 ```
@@ -81,6 +83,7 @@ make_plantuml_code(xsd_file) %>%
 ```{r plantuml_from_xsd2, results = FALSE}
 xsd_file <- system.file(package = "ruml", "extdata", "xml", "plenaryprotocol.xsd")
 make_plantuml_code(xsd_file) %>%
+  paste(collapse = "\n") %>%
   plantuml() %>%
   plot(vector = TRUE)
 ```

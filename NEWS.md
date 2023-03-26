@@ -1,3 +1,7 @@
+## ruml v0.0.3
+
+- Added missing `paste()` in vignette.
+
 ## ruml v0.0.1
 
 - Added example XML documents shiporder.xml and shiporder.xsd (source:
